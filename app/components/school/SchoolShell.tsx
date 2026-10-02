@@ -17,7 +17,8 @@ export type SchoolPage =
   | "marks"
   | "attendance"
   | "leaves"
-  | "directory";
+  | "directory"
+  | "early-access";
 
 const pageLabels: Record<SchoolPage, string> = {
   home: "",
@@ -27,6 +28,7 @@ const pageLabels: Record<SchoolPage, string> = {
   attendance: "Student Attendance",
   leaves: "Student Daily Leaves",
   directory: "All Student Directory",
+  "early-access": "Early Access",
 };
 
 export function SchoolShell({
@@ -38,13 +40,22 @@ export function SchoolShell({
 }) {
   const [navOpen, setNavOpen] = useState(false);
   const [studentHubOpen, setStudentHubOpen] = useState(
-    page === "attendance" || page === "leaves" || page === "directory",
+    page === "attendance" ||
+      page === "leaves" ||
+      page === "directory" ||
+      page === "early-access",
   );
   const [examsOpen, setExamsOpen] = useState(
-    page !== "attendance" && page !== "leaves" && page !== "directory",
+    page !== "attendance" &&
+      page !== "leaves" &&
+      page !== "directory" &&
+      page !== "early-access",
   );
   const studentHubActive =
-    page === "attendance" || page === "leaves" || page === "directory";
+    page === "attendance" ||
+    page === "leaves" ||
+    page === "directory" ||
+    page === "early-access";
   const examsActive = page !== "home" && !studentHubActive;
 
   return (
@@ -126,6 +137,15 @@ export function SchoolShell({
                 to="/student-hub/daily-leaves"
               >
                 Student Daily Leaves
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `school-subnav-link${isActive ? " is-active" : ""}`
+                }
+                onClick={() => setNavOpen(false)}
+                to="/student-hub/early-access"
+              >
+                Early Access
               </NavLink>
             </div>
           </div>

@@ -44,6 +44,7 @@ function viewForPath(pathname: string): string {
   if (pathname === "/student-hub/attendance") return "student-attendance";
   if (pathname === "/student-hub/daily-leaves") return "student-daily-leaves";
   if (pathname === "/student-hub/directory") return "student-directory";
+  if (pathname === "/student-hub/early-access") return "student-early-access";
   return "home";
 }
 
@@ -61,6 +62,8 @@ function pathForView(view?: string): string {
       return "/student-hub/daily-leaves";
     case "student-directory":
       return "/student-hub/directory";
+    case "student-early-access":
+      return "/student-hub/early-access";
     case "home":
     default:
       return "/";
